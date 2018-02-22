@@ -1,30 +1,16 @@
 <?php
 use \Model\Users;
 use Firebase\JWT\JWT;
-class Controller_lists extends Controller_Base
+class Controller_Lists extends Controller_Base
 {
 	public function post_create()
     {
         try {
-            if ( !isset($_POST['userName']) || !isset($_POST['password']) || !isset($_POST['email'])) 
+            if ( !isset($_POST['title']) &&  empty($_POST['title']))
             {
-            	return $this->respuesta(400, 'Algun paramentro esta vacio', '');
-            }if(isset($_POST['x']) || isset($_POST['y'])){
-            		
-            		if(empty($_POST['x']) || empty($_POST['y'])){
-	            		return $this->respuesta(400, 'Coordenadas vacias', '');
-	            	}
-            	}
-            	else
-            	{
-            		return $this->respuesta(400, 'Coordenadas no definidas', '');
-            	}
-            if(!empty($_POST['userName']) && !empty($_POST['password']) && !empty($_POST['email']))
-            {
-            	if(strlen($_POST['password']) < 5)
-            	{
-            		return $this->respuesta(400, 'La contraseña debe tener al menos 5 caracteres', '');
-            	}
+            	return $this->respuesta(400, 'Nombre vacio', '');
+            
+            
 				$input = $_POST;
 	            $newUser = $this->newUser($input);
 	           	$json = $this->saveUser($newUser);
@@ -33,17 +19,21 @@ class Controller_lists extends Controller_Base
 	        {
 	        	return $this->respuesta(400, 'Algun campo vacio', '');
 	        }
-        }catch (Exception $e){
+        }
+        catch (Exception $e)
+        {
         	return $this->respuesta(500, $e->getMessage(), '');
         }      
     }
+}
+
     private function newUser($input)
     {
     		$user = new Model_Users();
             $user->name = $input['name'];
             $user->name = $input['name'];
             $user->id_user = $input['id_device'];
-            $user->editable = $input['ediitable']
+            $user->editable = $input['editable']
             return $user;
     }
 

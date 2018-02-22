@@ -5,7 +5,7 @@ class Model_Lists extends Orm\Model
 	protected static $_primary_key = array('id');
 	protected static $_properties = array(
         'id'=> array('data_type' => 'int'), 
-        'name' => array('data_type' => 'varchar'),
+        'title' => array('data_type' => 'varchar'),
         'id_user' => array('data_type' => 'int'),
         'editable' => array('data_type' => 'int')
     );

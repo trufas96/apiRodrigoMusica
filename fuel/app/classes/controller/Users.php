@@ -76,7 +76,7 @@ class Controller_Users extends Controller_Base
     public function post_login()
     {	try{
 	        if ( !isset($_POST['userName']) || !isset($_POST['password']) ) {
-	        	return $this->respuesta(400, 'alguno de los datos esta vacio', '');
+	        	return $this->respuesta(400, 'Alguno de los datos esta vacio', '');
 	        }else if( !empty($_POST['userName']) && !empty($_POST['password'])){
 	            $input = $_POST;
 	            $user = Model_Users::find('all', 
@@ -202,29 +202,15 @@ class Controller_Users extends Controller_Base
     	
     	 if($arrayAuthenticated['authenticated']){
 	    		$decodedToken = JWT::decode($arrayAuthenticated["data"], MY_KEY, array('HS256'));
-	    		//Model_Users::find($decodedToken->id);
-	    		
-	    		// if(!empty($user))
-	    		// {
-	    			//reset($user);
 	    			$arrayData = array();
-	    			$arrayData['userName'] = $decodedToken->userName;
-	    			//$arrayData['userName'] = $decodedToken->userName;
-	    			//$arrayData['']
-	    			return $this->respuesta(200, 'info User', $arrayData);
-				// }else{
-	   //  			return $this->respuesta(202, 'Usuario no encontrado','');
-    	//	}
+	    			$arrayData['userName'] = $decodedToken->userName;	    			
+	    			return $this->respuesta(200, 'info User', $arrayData);				
     	}else{
     			return $this->respuesta(401, 'NO AUTORIZACION','');
     		}
     }
-
-
-
+ 
     //imagenes
-    
-    
 	private function post_saveImage($profilePicture)
 	{
 			$pictureToSave = $profilePicture;
@@ -240,7 +226,6 @@ class Controller_Users extends Controller_Base
 
 
 	}
-
 
 
     public function post_changeImage()
@@ -295,5 +280,5 @@ class Controller_Users extends Controller_Base
     	 {
     	 	return $this->respuesta(401, 'No autenticado','');
      	}
-	}
+	 }
 }

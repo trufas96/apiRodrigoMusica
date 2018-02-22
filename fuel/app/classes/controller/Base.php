@@ -4,7 +4,7 @@ define('MY_KEY', 'tokens_key');
 define('ID_ADMIN', 1);
 class Controller_Base extends Controller_Rest
 {
-	private static $secret_key = 'ARZOO';
+    private static $secret_key = 'ARZOO';
     private static $encrypt = ['HS256'];
     private static $aud = null;
 
@@ -28,10 +28,10 @@ class Controller_Base extends Controller_Rest
         
     }
 
-	protected function encodeToken($userName, $password, $id, $email, $id_role)
+    protected function encodeToken($userName, $password, $id, $email, $id_role)
     {
         $token = array(
-        		"id" => $id,
+                "id" => $id,
                 "userName" => $userName,
                 "password" => $password,
                 "email" => $email,

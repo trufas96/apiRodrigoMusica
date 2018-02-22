@@ -1,4 +1,4 @@
-<?php  
+     <?php  
 class Model_News extends Orm\Model
 {
     protected static $_table_name = 'news';
